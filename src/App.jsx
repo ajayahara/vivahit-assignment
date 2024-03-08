@@ -1,6 +1,10 @@
+import { AllRoute } from "./routes/AllRoute";
+import { Container } from "@chakra-ui/react"
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
-export default App
+    <Container  maxW='1350px'>
+      <AllRoute />
+    </Container>
+  );
+};
+export default App;

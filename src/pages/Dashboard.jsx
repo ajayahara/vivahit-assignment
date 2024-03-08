@@ -1,6 +1,6 @@
-
+import { CoinTable } from "../components/CoinTable";
 export const Dashboard = () => {
   return (
-    <div>Dashboard</div>
-  )
-}
+    <CoinTable/>
+  );
+};

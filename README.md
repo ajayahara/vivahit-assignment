@@ -1,8 +1,11 @@
-# React + Vite
+export const CoinList = (currency) =>
+  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+export const SingleCoin = (id) =>
+  `https://api.coingecko.com/api/v3/coins/${id}`;
 
-Currently, two official plugins are available:
+export const HistoricalChart = (id, days = 365, currency) =>
+  `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${days}`;
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+export const TrendingCoins = (currency) =>
+  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=gecko_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`;
