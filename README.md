@@ -1,6 +1,12 @@
 # Cryptocurrency Project Documentation
 ## Live Demo
 Netlify Link:-[Live Demo](https://crypto-world221.netlify.app/)
+Live Video:- [Live Video](https://drive.google.com/file/d/1y3C89moAyGr2N8W3hurHex9EAzEIdZI0/view?usp=sharing)
+### Note:-
+- Data polling is scheduled for an interval 30sec.
+- Since using free api and also it will show loading for several minute since requested so many time.
+- No need to add a .env file
+
 ## Getting Started
 
 To run the development server and explore the cryptocurrency project, follow these steps:
