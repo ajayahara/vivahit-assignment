@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import {
+  Box,
   Button,
   Flex,
   Table,
@@ -42,9 +43,27 @@ export const CoinTable = () => {
   }, [page, getAllCoins]);
 
   return (
-    <>
+    <Box px="10" py="1" w="100%">
+      <Flex justifyContent="end" gap="3">
+        <Button size="sm" disabled={page == 1} onClick={() => setPage((pre) => pre - 1)}>
+          {"<"}
+        </Button>
+        <Button size="sm">{page}</Button>
+        <Button
+          size="sm"
+          disabled={coins.length < 10}
+          onClick={() => setPage((pre) => pre + 1)}
+        >
+         {">"}
+        </Button>
+      </Flex>
       <TableContainer>
-        <Table variant="striped" cellPadding="1px" cellSpacing="1px">
+        <Table
+          variant="simple"
+          color="whitesmoke"
+          cellPadding="1px"
+          cellSpacing="1px"
+        >
           <TableCaption>Showing trending crypto currencies.</TableCaption>
           <Thead>
             <Tr>
@@ -59,25 +78,11 @@ export const CoinTable = () => {
           </Thead>
           <Tbody>
             {coins.map((coin, i) => {
-              return (
-               <CoinsRow key={i} page={page} coin={coin} i={i}/>
-              );
+              return <CoinsRow key={i} page={page} coin={coin} i={i} />;
             })}
           </Tbody>
         </Table>
       </TableContainer>
-      <Flex justifyContent="end" gap="3">
-        <Button disabled={page == 1} onClick={() => setPage((pre) => pre - 1)}>
-          Prev
-        </Button>
-        <Button>Showing page {page}</Button>
-        <Button
-          disabled={coins.length < 10}
-          onClick={() => setPage((pre) => pre + 1)}
-        >
-          Next
-        </Button>
-      </Flex>
-    </>
+    </Box>
   );
 };

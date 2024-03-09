@@ -70,7 +70,7 @@ export const CoinChart = () => {
               datasets: [
                 {
                   data: coinHistory.map((coin) => coin[1]),
-                  label: `Price change in ${days}`,
+                  label: `Price change in ${days} days`,
                   borderColor: "#DCDCDC",
                 },
               ],

@@ -1,10 +1,14 @@
+import { Navbar } from "./components/NavBar";
 import { AllRoute } from "./routes/AllRoute";
-import { Container } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react";
 const App = () => {
   return (
-    <Container  maxW='1350px'>
-      <AllRoute />
-    </Container>
+    <>
+      <Box w="100%" minH="100vh" bg="gray.800">
+        <Navbar />
+        <AllRoute />
+      </Box>
+    </>
   );
 };
 export default App;
