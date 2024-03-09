@@ -28,6 +28,7 @@ export const CoinTable = () => {
   const [page, setPage] = useState(1);
 
   const getAllCoins = useCallback(async () => {
+    if(page <1) return;
     try {
       const response = await axios.get(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=gecko_desc&per_page=10&page=${page}&sparkline=false&price_change_percentage=24h`
@@ -45,14 +46,14 @@ export const CoinTable = () => {
   return (
     <Box px="10" py="1" w="100%">
       <Flex justifyContent="end" gap="3">
-        <Button size="sm" disabled={page == 1} onClick={() => setPage((pre) => pre - 1)}>
+        <Button size="sm" disabled={page == 1} onClick={() => setPage(page+1)}>
           {"<"}
         </Button>
         <Button size="sm">{page}</Button>
         <Button
           size="sm"
           disabled={coins.length < 10}
-          onClick={() => setPage((pre) => pre + 1)}
+          onClick={() => setPage(page-1)}
         >
          {">"}
         </Button>
