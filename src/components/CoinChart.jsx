@@ -45,8 +45,8 @@ export const CoinChart = () => {
   }, [id, getCoinHistory, days]);
 
   return (
-    <Box w="70%" h="100vh" px="5" py="10">
-      <Box display="flex" gap="2" justifyContent="end">
+    <Box w={{base:"100%",lg:"70%"}} h={{base:"100vh",md:"50vh",lg:"80vh"}} px="5" py={{base:"10"}}>
+      <Box display="flex" gap="2" justifyContent={{base:"space-between",md:"end"}} mb="2">
         {buttons.map((item, i) => (
           <Button size="sm" key={i} onClick={() => setDays(item.value)}>
             {item.name}
@@ -71,7 +71,7 @@ export const CoinChart = () => {
                 {
                   data: coinHistory.map((coin) => coin[1]),
                   label: `Price change in ${days} days`,
-                  borderColor: "#DCDCDC",
+                  borderColor: "#FFFFFF",
                 },
               ],
             }}

@@ -28,7 +28,7 @@ export const CoinDetails = () => {
     getCoinDetails();
   }, [id, getCoinDetails]);
   return (
-    <Box maxH="100vh" overflowY="scroll" bg="gray.900" w="30%" padding="5">
+    <Box maxHeight="90vh" overflowY="scroll" bg="gray.900" w={{base:"100%",lg:"30%"}} padding="5">
       <Center gap="2" flexDir="column">
         <Image
           boxSize="200px"

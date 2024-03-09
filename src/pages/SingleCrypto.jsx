@@ -12,7 +12,7 @@ export const SingleCrypto = () => {
       color="white"
       direction={{
         base:"column",
-        md:"row"
+        lg:"row"
       }}
     >
       <CoinDetails />

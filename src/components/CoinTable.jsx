@@ -28,7 +28,7 @@ export const CoinTable = () => {
   const [page, setPage] = useState(1);
 
   const getAllCoins = useCallback(async () => {
-    if(page <1) return;
+    if (page < 1) return;
     try {
       const response = await axios.get(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=gecko_desc&per_page=10&page=${page}&sparkline=false&price_change_percentage=24h`
@@ -44,20 +44,7 @@ export const CoinTable = () => {
   }, [page, getAllCoins]);
 
   return (
-    <Box px="10" py="1" w="100%">
-      <Flex justifyContent="end" gap="3">
-        <Button size="sm" disabled={page == 1} onClick={() => setPage(page+1)}>
-          {"<"}
-        </Button>
-        <Button size="sm">{page}</Button>
-        <Button
-          size="sm"
-          disabled={coins.length < 10}
-          onClick={() => setPage(page-1)}
-        >
-         {">"}
-        </Button>
-      </Flex>
+    <Box px={{ base: "0", md: "10" }} py="1" w="100%">
       <TableContainer>
         <Table
           variant="simple"
@@ -65,7 +52,25 @@ export const CoinTable = () => {
           cellPadding="1px"
           cellSpacing="1px"
         >
-          <TableCaption>Showing trending crypto currencies.</TableCaption>
+          <TableCaption>
+            <Flex justifyContent="center" gap="3">
+              <Button
+                size="sm"
+                isDisabled={page == 1}
+                onClick={() => setPage(page -1)}
+              >
+                {"<"}
+              </Button>
+              <Button size="sm">{page}</Button>
+              <Button
+                size="sm"
+                isDisabled={coins.length < 10}
+                onClick={() => setPage(page + 1)}
+              >
+                {">"}
+              </Button>
+            </Flex>
+          </TableCaption>
           <Thead>
             <Tr>
               {tableHeaders.map((item, i) => {
