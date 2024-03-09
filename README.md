@@ -28,7 +28,7 @@ To run the development server and explore the cryptocurrency project, follow the
    npm run dev
    ```
 
-   The project will be available at \`http://localhost:3000\` in your web browser.
+   The project will be available at http://localhost:3000/ in your web browser.
 
 ## Tech Stack
 
@@ -43,12 +43,12 @@ The cryptocurrency project is built using the following technologies:
 ### Dashboard Page
 
 Explore the latest market trends and cryptocurrency performance on the dashboard.
-![Dashboard Page](https://drive.google.com/file/d/1HVkxg8aVXFHgsm5ZHaVS-8zpPVvJRe9l/view?usp=sharing)
+![Dashboard Page](https://crypto-world221.netlify.app/homepage.png)
 
 ### Coin Details Page
 
 Navigate to the coin details page to get detailed information about a specific cryptocurrency. View the price changes of selected cryptocurrencies using Chart.js.
-![Coin Detils](https://drive.google.com/file/d/1efQ8roBRvBECdjuVP3popCcblQdct7eh/view?usp=sharing)
+![Coin Detils](https://crypto-world221.netlify.app/detailspage.png)
 
 
 ## Conclusion
