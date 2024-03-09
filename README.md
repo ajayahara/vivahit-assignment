@@ -59,5 +59,5 @@ Navigate to the coin details page to get detailed information about a specific c
 
 ## Conclusion
 
-Thank you for exploring our cryptocurrency project! For any questions or feedback, please contact [Your Contact Information].
+Thank you for exploring our cryptocurrency project! For any questions or feedback, please contact abak00350@gmail.com .
 EOF
