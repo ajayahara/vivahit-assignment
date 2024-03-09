@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import {
-  Center,
+  Button,
   Flex,
-  Image,
   Table,
   TableCaption,
   TableContainer,
   Tbody,
-  Td,
-  Text,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { CoinsRow } from "./CoinsRow";
 
 const tableHeaders = [
   "Sl No.",
@@ -27,23 +24,26 @@ const tableHeaders = [
 
 export const CoinTable = () => {
   const [coins, setCoins] = useState([]);
-  const navigate=useNavigate();
-  const getAllCoins = async () => {
+  const [page, setPage] = useState(1);
+
+  const getAllCoins = useCallback(async () => {
     try {
       const response = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=gecko_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=gecko_desc&per_page=10&page=${page}&sparkline=false&price_change_percentage=24h`
       );
       setCoins(response.data);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [page]);
+
   useEffect(() => {
     getAllCoins();
-  }, []);
+  }, [page, getAllCoins]);
+
   return (
     <>
-      <TableContainer >
+      <TableContainer>
         <Table variant="striped" cellPadding="1px" cellSpacing="1px">
           <TableCaption>Showing trending crypto currencies.</TableCaption>
           <Thead>
@@ -60,44 +60,24 @@ export const CoinTable = () => {
           <Tbody>
             {coins.map((coin, i) => {
               return (
-                <Tr key={i} cursor="pointer" onClick={()=>navigate(`/crypto/${coin.id}`)}>
-                  <Td py="1" textAlign="center">
-                    {i + 1}
-                  </Td>
-                  <Td py="1" textAlign="center">
-                    <Center w="100%">
-                      <Flex
-                        direction="column"
-                        justifyContent="start"
-                        alignItems="center"
-                      >
-                        <Image
-                          boxSize="30px"
-                          src={coin.image}
-                          alt={coin.id}
-                        ></Image>
-                        <Text>{coin.symbol}</Text>
-                      </Flex>
-                    </Center>
-                  </Td>
-                  <Td py="1" textAlign="center">
-                    {coin.current_price?.toFixed(2)}
-                  </Td>
-                  <Td py="1" textAlign="center">
-                    {coin.price_change_percentage_24h.toFixed(3)} %
-                  </Td>
-                  <Td py="1" textAlign="center">
-                    {coin.market_cap}
-                  </Td>
-                  <Td py="1" textAlign="center">
-                    {coin.market_cap_rank}
-                  </Td>
-                </Tr>
+               <CoinsRow key={i} page={page} coin={coin} i={i}/>
               );
             })}
           </Tbody>
         </Table>
       </TableContainer>
+      <Flex justifyContent="end" gap="3">
+        <Button disabled={page == 1} onClick={() => setPage((pre) => pre - 1)}>
+          Prev
+        </Button>
+        <Button>Showing page {page}</Button>
+        <Button
+          disabled={coins.length < 10}
+          onClick={() => setPage((pre) => pre + 1)}
+        >
+          Next
+        </Button>
+      </Flex>
     </>
   );
 };
