@@ -1,5 +1,6 @@
 # Cryptocurrency Project Documentation
-
+## Live Demo
+Netlify Link:-[Live Demo](https://crypto-world221.netlify.app/)
 ## Getting Started
 
 To run the development server and explore the cryptocurrency project, follow these steps:
@@ -42,10 +43,12 @@ The cryptocurrency project is built using the following technologies:
 ### Dashboard Page
 
 Explore the latest market trends and cryptocurrency performance on the dashboard.
+![Dashboard Page](https://drive.google.com/file/d/1HVkxg8aVXFHgsm5ZHaVS-8zpPVvJRe9l/view?usp=sharing)
 
 ### Coin Details Page
 
 Navigate to the coin details page to get detailed information about a specific cryptocurrency. View the price changes of selected cryptocurrencies using Chart.js.
+![Coin Detils](https://drive.google.com/file/d/1efQ8roBRvBECdjuVP3popCcblQdct7eh/view?usp=sharing)
 
 
 ## Conclusion

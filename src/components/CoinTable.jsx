@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+import useSWR from "swr"
 import {
   Box,
   Button,
@@ -13,6 +13,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { CoinsRow } from "./CoinsRow";
+import { coinsFetcher, coinsUrl } from "../data";
 
 const tableHeaders = [
   "Sl No.",
@@ -24,25 +25,8 @@ const tableHeaders = [
 ];
 
 export const CoinTable = () => {
-  const [coins, setCoins] = useState([]);
   const [page, setPage] = useState(1);
-
-  const getAllCoins = useCallback(async () => {
-    if (page < 1) return;
-    try {
-      const response = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=gecko_desc&per_page=10&page=${page}&sparkline=false&price_change_percentage=24h`
-      );
-      setCoins(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [page]);
-
-  useEffect(() => {
-    getAllCoins();
-  }, [page, getAllCoins]);
-
+  const {data}=useSWR(coinsUrl(page),coinsFetcher,{refreshInterval:60000});
   return (
     <Box px={{ base: "0", md: "10" }} py="1" w="100%">
       <TableContainer>
@@ -64,7 +48,7 @@ export const CoinTable = () => {
               <Button size="sm">{page}</Button>
               <Button
                 size="sm"
-                isDisabled={coins.length < 10}
+                isDisabled={data?.length < 10}
                 onClick={() => setPage(page + 1)}
               >
                 {">"}
@@ -83,7 +67,7 @@ export const CoinTable = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {coins.map((coin, i) => {
+            {data?.map((coin, i) => {
               return <CoinsRow key={i} page={page} coin={coin} i={i} />;
             })}
           </Tbody>
