@@ -1,4 +1,4 @@
-import { Center, Flex, Image, Td, Text, Tr } from "@chakra-ui/react";
+import { Center, Flex, Hide, Image, Td, Text, Tr } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { memo } from "react";
 const CoinsRow = memo(({ page, coin, i }) => {
@@ -26,12 +26,16 @@ const CoinsRow = memo(({ page, coin, i }) => {
           {coin.price_change_percentage_24h.toFixed(3)} %
         </Text>
       </Td>
-      <Td p="0" py="2px" textAlign="center">
-        {coin.market_cap}
-      </Td>
-      <Td p="0" py="2px" textAlign="center">
-        {coin.market_cap_rank}
-      </Td>
+      <Hide below="md">
+        <Td p="0" py="2px" textAlign="center">
+          {coin.market_cap}
+        </Td>
+      </Hide>
+      <Hide below="md">
+        <Td p="0" py="2px" textAlign="center">
+          {coin.market_cap_rank}
+        </Td>
+      </Hide>
     </Tr>
   );
 });
