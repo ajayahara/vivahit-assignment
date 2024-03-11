@@ -73,12 +73,14 @@ export const CoinTable = () => {
                 if (i > 3) {
                   return (
                     <Hide key={i} below="md">
-                      <Th textAlign="center" px="0" py="2">{item}</Th>
+                      <Th textAlign="center" px="0" py="2">
+                        {item}
+                      </Th>
                     </Hide>
                   );
                 }
                 return (
-                  <Th textAlign="center"  px="0" py="2" key={i}>
+                  <Th textAlign="center" px="0" py="2" key={i}>
                     {item}
                   </Th>
                 );
@@ -90,11 +92,22 @@ export const CoinTable = () => {
               ? new Array(10).fill(0).map((_, index) => {
                   return (
                     <Tr key={index}>
-                      {tableHeaders.map((_, i) => (
-                        <Th key={i}>
-                          <Skeleton height="25px" />
-                        </Th>
-                      ))}
+                      {tableHeaders.map((_, i) => {
+                        if (i > 3) {
+                          return (
+                            <Hide below="md" key={i}>
+                              <Th>
+                                <Skeleton height="25px" />
+                              </Th>
+                            </Hide>
+                          );
+                        }
+                        return (
+                          <Th key={i}>
+                            <Skeleton height="25px" />
+                          </Th>
+                        );
+                      })}
                     </Tr>
                   );
                 })
